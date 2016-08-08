@@ -1,0 +1,10 @@
+Source: lc-tools
+Maintainer: Lukas Rademacher <lukas@rademacher.ac>
+Section: web
+Priority: optional
+Package: lc-tools
+Version: 0.9
+Architecture: all
+Essential: no
+Depends: php,php-sqlite3,liveconfig
+Description: Tools for Liveconfig
