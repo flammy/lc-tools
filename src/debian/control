@@ -6,5 +6,5 @@ Package: lc-tools
 Version: 0.9
 Architecture: all
 Essential: no
-Depends: php,php-sqlite3,liveconfig
+Depends: coreutils,php,php-sqlite3,liveconfig,openssl
 Description: Tools for Liveconfig
