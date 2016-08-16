@@ -1,0 +1,6 @@
+etc
+etc/lc-tools
+etc/lc-tools/lc-tools.conf
+usr
+usr/bin
+usr/bin/le2lc.php

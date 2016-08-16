@@ -2,9 +2,10 @@ Source: lc-tools
 Maintainer: Lukas Rademacher <lukas@rademacher.ac>
 Section: web
 Priority: optional
+Standards-Version: 3.8.4
+
 Package: lc-tools
-Version: 0.9
 Architecture: all
-Essential: no
-Depends: coreutils,php,php-sqlite3,liveconfig,openssl
+Depends: php5-cli|php7-cli, php-sqlite3, liveconfig, openssl
 Description: Tools for Liveconfig
+  This Liveconfig Tools manage Let's encypt certifikates
