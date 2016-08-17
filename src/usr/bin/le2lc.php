@@ -100,6 +100,24 @@ class le2lc{
 	}
 	
 	
+	public function backupConfigFile($file){
+		$backupfile = $file.".bak";
+		if(!file_exists($backupfile)){
+			rename($file, $backupfile);
+			return true;
+		}
+		$i = 1;
+		while($i< 20){
+			$backupfile = $file.".bak".$i;
+			if(!file_exists($backupfile)){
+				rename($file, $backupfile);
+				return true;
+			}
+			$i++;
+		}
+	}
+
+
 	public function parseConfFile($file){
 		if(!file_exists($file)){
 			$this->log("Configfile does not exist: ".$file." ");
@@ -245,7 +263,7 @@ class le2lc{
 					$new_cert_name =   $certificates[$row['SSL_NAME']]['cert']['path']."/".$config['filenames']['cert'];
 					if(file_exists($new_cert_name)){
 						if($this->dryrun == false){
-						    rename($old_cert_name,$old_cert_name.".bak");
+							$this->backupConfigFile($old_cert_name);
 						    symlink($new_cert_name,$old_cert_name);
 						}
 						$this->log("Linking: ".$old_cert_name." => ".$new_cert_name);
@@ -259,7 +277,7 @@ class le2lc{
 					$new_privkey_name =   $certificates[$row['SSL_NAME']]['cert']['path']."/".$config['filenames']['privkey'];
 					if(file_exists($new_privkey_name)){
 						if($this->dryrun == false){
-						    rename($old_privkey_name,$old_privkey_name.".bak");
+							$this->backupConfigFile($old_privkey_name);
 						    symlink($new_privkey_name,$old_privkey_name);
 						}
 						$this->log("Linking: ".$old_privkey_name." => ".$new_privkey_name);
@@ -273,7 +291,7 @@ class le2lc{
 					$new_chain_name =   $certificates[$row['SSL_NAME']]['cert']['path']."/".$config['filenames']['chain'];
 					if(file_exists($new_chain_name)){
 						if($this->dryrun == false){
-						    rename($old_chain_name,$old_chain_name.".bak");
+							$this->backupConfigFile($old_chain_name);
 						    symlink($new_chain_name,$old_chain_name);
                                                 }
 						$this->log("Linking: ".$old_chain_name." => ".$new_chain_name);
