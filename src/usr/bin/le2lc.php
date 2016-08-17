@@ -256,7 +256,9 @@ class le2lc{
 		$results = $this->query($query,$lc_config);
 		$nolink = false;
 		foreach ($results as $row) {
-			if(isset($certificates[$row['SSL_NAME']])){
+			$valid_le = strtotime($certificates[$row['SSL_NAME']]['cert']['validto']);
+			$valid_lc = strtotime($row['SSL_VALIDTO']);
+			if(isset($certificates[$row['SSL_NAME']]) && $valid_le >= $valid_lc){
 				$old_cert_name = '/etc/ssl/certs/'.$row['SSL_FILENAME'].'.crt';
 				if(!is_link($old_cert_name )){
 					$nolink = true;
@@ -307,7 +309,7 @@ class le2lc{
 
 
 	function check_expire($certificates,$lc_config){
-		$query ="SELECT * FROM sslcerts where ssl_issuer=\"Let's Encrypt Authority X3\n"";
+		$query ="SELECT * FROM sslcerts where ssl_issuer=\"Let's Encrypt Authority X3\"";
 		$results = $this->query($query,$lc_config);
 		$renew_certs = false;
 		$this->log("Scanning liveconfig for Known certificates that are about to expire");
@@ -327,6 +329,9 @@ class le2lc{
 		}
 		return $renew_certs;
 	}
+
+
+
 
 
 	function check_lc($certificates,$lc_config){
