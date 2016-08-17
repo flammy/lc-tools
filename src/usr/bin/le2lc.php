@@ -252,7 +252,7 @@ class le2lc{
 	
 	
 	function prepare_symlinks($certificates,$cert_config,$lc_config){
-		$query ="SELECT * FROM sslcerts";
+		$query ="SELECT * FROM sslcerts where ssl_issuer=\"Let's Encrypt Authority X3\"";
 		$results = $this->query($query,$lc_config);
 		$nolink = false;
 		foreach ($results as $row) {
@@ -307,7 +307,7 @@ class le2lc{
 
 
 	function check_expire($certificates,$lc_config){
-		$query ="SELECT * FROM sslcerts";
+		$query ="SELECT * FROM sslcerts where ssl_issuer=\"Let's Encrypt Authority X3\n"";
 		$results = $this->query($query,$lc_config);
 		$renew_certs = false;
 		$this->log("Scanning liveconfig for Known certificates that are about to expire");
