@@ -1,6 +1,18 @@
 # lc-tools
 Tools for liveconfig
 
+Warning liveconfig overwrites your certificate-files. This Script links the Liveconfig certificates with your letsencrypt certificates. 
+
+To keep your liveconfig entries up-to-date this script updates the entries in the liveconfig database.
+
+**Its current not possible to Update the privatekey because the private key is stored encrypted in the liveconfig database.**
+
+**If you run an update of your lets encrypt certificate certbot will create a new privatekey everytime. **
+
+**If you update your certificates with certbot, liveconfig will overwrite your private key with your old private key.**
+
+**This Problem is currently not solved!**
+
 le2lc.php Helps you sync your letsencrypt certificates with liveconfig.
 
 * scans your letsencrypt directetory for certificates
