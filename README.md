@@ -7,7 +7,7 @@ To keep your liveconfig entries up-to-date this script updates the entries in th
 
 **Its current not possible to Update the privatekey because the private key is stored encrypted in the liveconfig database.**
 
-**If you run an update of your lets encrypt certificate certbot will create a new privatekey everytime. **
+**If you run an update of your lets encrypt certificate certbot will create a new privatekey everytime.**
 
 **If you update your certificates with certbot, liveconfig will overwrite your private key with your old private key.**
 
